@@ -40,8 +40,9 @@ All the changes documented:
 ```
 - At this point, running `tsc` would look for any files with `.ts` or `.js` (because of allowJs) extension and transpile them into the build folder. But it doesn't process other files like html, ejs or css in our project.
 - There are two ways to handle what happens with non-JS files that aren't transpiled by the TS compiler itself:
-* using build tools like webpack or gulp to handle these files for you
-* build re-usable custom logic for projects not integrating build tools
+    * using build tools like webpack or gulp to handle these files for you
+        - There's an official [guide](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#integrating-with-build-tools) for this that you can refer to
+    * build re-usable custom logic for projects not integrating build tools
 
 -> install these packages<br />
 `npm install --save-dev ts-node@10 shelljs@0.8 fs-extra@10 nodemon@2 rimraf@3 npm-run-all@4`<br />
