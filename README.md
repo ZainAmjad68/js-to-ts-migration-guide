@@ -1,5 +1,7 @@
 # js-to-ts-migration-guide
 
+If you've reached here, you might already know that TypeScript is a superset of JavaScript and that TypeScript is eventually transpiled to JavaScript so that it can be run. That begs the question, 'why would anyone want to migrate to TS?'
+
 ## Why do it?
 There are several reasons why one might want to convert his JavaScript project to TypeScript.
 
@@ -22,9 +24,21 @@ And here are some not so good reasons for migrating:
 ## Overview of the Process
 
 All the changes documented:
-- Make two folders, src and build. Copy/Paste all the old project files into the src folder. Take out the package.json and any other non-JS config related files (.github folder, .gitignore, any claudia json files)
-- Build a tsconfig.json file and add the appropriate options to it.
-- In package.json, change the main entering point of the app and also specify the files property to only include build folder files.
+- Make two folders, `src` and `build`. Copy/Paste all the old project files into the src folder. Take out the `package.json` and any other non-JS configuration related files (.github folder, .gitignore, any claudia json files)
+- Install TypeScript by executing `npm install typescript`. And use `tsc --init` command to build a tsconfig.json file.
+
+`tsconfig.json` should have the input and output directories defined, allow JS to be processed initially, and include the target version of JS. All in all, these options should be present in the file:
+```json
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es5"
+  },
+  "include": ["./src/**/*"]
+}
+```
+- In the package.json, change the main entering point of the app and also specify the files property to only include build folder files.
 ```json
   "main": "build/app.js",
   "files": [
