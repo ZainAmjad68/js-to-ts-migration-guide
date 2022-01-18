@@ -1,6 +1,6 @@
 # js-to-ts-migration-guide
 
-If you've reached here, you might already know that TypeScript is a superset of JavaScript and that TypeScript is eventually transpiled to JavaScript so that it can be run. That begs the question, 'why would anyone want to migrate to TS?'
+If you've reached here, you might already know that TypeScript is a superset of JavaScript and that TypeScript is eventually transpiled to JavaScript so that it can be run. That begs the question, **why would anyone want to migrate to TS?**
 
 ## Why do it?
 There are several reasons why one might want to convert his JavaScript project to TypeScript.
@@ -37,6 +37,26 @@ All the changes documented:
   },
   "include": ["./src/**/*"]
 }
+```
+- At this point, running `tsc` would look for any files with `.ts` or `.js` (because of allowJs) extension and transpile them into the build folder. But it doesn't process other files like html, ejs or css in our project.
+- There are two ways to handle what happens with non-JS files that aren't transpiled by the TS compiler itself:
+* using build tools like webpack or gulp to handle these files for you
+* build re-usable custom logic for projects not integrating build tools
+-> install these packages
+`npm install --save-dev ts-node@10 shelljs@0.8 fs-extra@10 nodemon@2 rimraf@3 npm-run-all@4`
+`npm install --save-dev @types/fs-extra@9 @types/shelljs@0.8`
+-> Make a folder named tools and a file named copy-assets.ts in it. Use the file to copy assets,views from src to build using the shelljs module.
+-> have these scripts in package.json
+```json
+"scripts": {
+    "clean": "rimraf dist/*",
+    "copy-assets": "ts-node tools/copyAssets",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "tsc": "tsc",
+    "build": "npm-run-all clean lint tsc copy-assets",
+    "dev:start": "npm-run-all build start",
+    "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
+  }
 ```
 - In the package.json, change the main entering point of the app and also specify the files property to only include build folder files.
 ```json
