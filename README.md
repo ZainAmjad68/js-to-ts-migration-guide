@@ -43,8 +43,8 @@ All the changes documented:
 * using build tools like webpack or gulp to handle these files for you
 * build re-usable custom logic for projects not integrating build tools
 
--> install these packages<\br>
-`npm install --save-dev ts-node@10 shelljs@0.8 fs-extra@10 nodemon@2 rimraf@3 npm-run-all@4`<\br>
+-> install these packages<br />
+`npm install --save-dev ts-node@10 shelljs@0.8 fs-extra@10 nodemon@2 rimraf@3 npm-run-all@4`<br />
 `npm install --save-dev @types/fs-extra@9 @types/shelljs@0.8`
 
 -> Make a folder named tools and a file named copy-assets.ts in it. Use the file to copy assets,views from src to build using the shelljs module.
