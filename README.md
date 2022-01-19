@@ -43,7 +43,7 @@ All the changes documented:
     * using build tools like webpack or gulp to handle these files for you
         - There's an official [guide](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#integrating-with-build-tools) for this that you can refer to.
     * build re-usable custom logic for projects not integrating build tools
-        - This method use libraries ts-node, shelljs, fs-extra, nodemon, rimraf, and npm-run-all
+        - This method use libraries [ts-node](https://www.npmjs.com/package/ts-node), [shelljs](https://www.npmjs.com/package/shelljs), [nodemon](https://www.npmjs.com/package/nodemon), [rimraf](https://www.npmjs.com/package/rimraf), and [npm-run-all](https://www.npmjs.com/package/npm-run-all)
         - Install all the above mentioned packages and their type definitions
         - Make a folder named tools and a file named copy-assets.ts in it. Use the file to copy assets,views from src to build using the shelljs module.
             ```javascript
@@ -54,16 +54,16 @@ All the changes documented:
 
             // add commands for any other stuff to copy over
             ```
-        - Add these scripts to package.json:
-            ```json
-            "scripts": {
-                "clean": "rimraf dist/*",
-                "copy-assets": "ts-node tools/copyAssets",
-                "lint": "tslint -c tslint.json -p tsconfig.json --fix",
-                "tsc": "tsc",
-                "build": "npm-run-all clean lint tsc copy-assets",
-                "dev:start": "npm-run-all build start",
-                "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
+        - Add these scripts to `package.json`:
+            ```javascript
+            "scripts": {    // remove comments as json doesn't support them
+                "clean": "rimraf build/*",  // deletes everything from build
+                "copy-assets": "ts-node tools/copyAssets",  // copies relevant assets from src to build
+                "tsc": "tsc",   // transpiles typescript to javascript
+                "build": "npm-run-all clean tsc copy-assets",   // runs the above mentioned scripts with a single command
+                "start": "node .",  // command to run dev server
+                "dev:start": "npm-run-all build start",    // transpiles and then starts the dev server
+                "dev": "nodemon --watch src -e ts,ejs,png,css --exec npm run dev:start",    // starts the dev server in watch mode
             }
             ```
 - In the package.json, change the main entering point of the app and also specify the files property to only include build folder files.
