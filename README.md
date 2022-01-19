@@ -18,7 +18,7 @@ Here are some of the good reasons for deciding to migrate to TypeScript:
 And here are some not so good reasons for migrating:
 
 - Thinking it's Easier than JavaScript
-- Type Correctness === Program Correctness
+- Asumming that Type Correctness === Program Correctness
 - Everybody's doing it
 
 ## Overview of the Process
