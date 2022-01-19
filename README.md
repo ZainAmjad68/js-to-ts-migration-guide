@@ -80,7 +80,11 @@ All the changes documented:
   ]
 ```
 
-***You are now ready to convert your first JS file into TS.*** Choose any file (try to start with smaller files and go in the same flow as your application would go [i.e.; for an express application: index.js -> router -> middleware -> handler]) that you would like to convert and change its extension to `.ts`. Deal with any error that might arise. And after you're satisfied, run `npm run build`. It should transpile the typescript code and give you the desired result.
+---------------------------------------------------------------------------------------------------------------------------------
+
+***You are now ready to convert your first JS file into TS.*** 
+
+Choose any file (try to start with smaller files and go in the same flow as your application would go [i.e.; for an express application: index.js -> router -> middleware -> handler]) that you would like to convert and change its extension to `.ts`. Deal with any error that might arise. And after you're satisfied, run `npm run build`. It should transpile the typescript code and give you the desired result.
 
 Repeat the process until all the files in the project are converted to TS. If possible, run the project after every conversion, it would make it easier to catch any errors made by you during the converion and will help to isolate the cause of failure to that single recently converted file. 
 
