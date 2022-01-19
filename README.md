@@ -26,18 +26,17 @@ And here are some not so good reasons for migrating:
 All the changes documented:
 - Make two folders, `src` and `build`. Copy/Paste all the old project files into the src folder. Take out the `package.json` and any other non-JS configuration related files (.github folder, .gitignore, any claudia json files)
 - Install TypeScript by executing `npm install typescript`. And use `tsc --init` command to build a tsconfig.json file.
-
-`tsconfig.json` should have the input and output directories defined, allow JS to be processed initially, and include the target version of JS. All in all, these options should be present in the file:
-```json
-{
-  "compilerOptions": {
-    "outDir": "./built",
-    "allowJs": true,
-    "target": "es5"
-  },
-  "include": ["./src/**/*"]
-}
-```
+    * `tsconfig.json` should have the input and output directories defined, allow JS to be processed initially, and include the target version of JS. All in all, these options should be present in the file:
+    ```json
+    {
+    "compilerOptions": {
+        "outDir": "./build",
+        "allowJs": true,
+        "target": "es5"
+    },
+    "include": ["./src/**/*"]
+    }
+    ```
 - At this point, running `tsc` would look for any files with `.ts` or `.js` (because of allowJs) extension and transpile them into the build folder. But it doesn't process other files like html, ejs or css in our project.
 - There are two ways to handle what happens with non-JS files that aren't transpiled by the TS compiler itself:
     * using build tools like webpack or gulp to handle these files for you
@@ -45,7 +44,7 @@ All the changes documented:
     * build re-usable custom logic for projects not integrating build tools
         - This method use libraries [ts-node](https://www.npmjs.com/package/ts-node), [shelljs](https://www.npmjs.com/package/shelljs), [nodemon](https://www.npmjs.com/package/nodemon), [rimraf](https://www.npmjs.com/package/rimraf), and [npm-run-all](https://www.npmjs.com/package/npm-run-all)
         - Install all the above mentioned packages and their type definitions
-        - Make a folder named tools and a file named copy-assets.ts in it. Use the file to copy assets,views from src to build using the shelljs module.
+        - Make a folder named tools and a file named copy-assets.ts in it. Use the file to copy assets (views folder etc.) from src to build using the shelljs module.
             ```javascript
             import * as shell from "shelljs";
 
@@ -58,8 +57,8 @@ All the changes documented:
             ```javascript
             "scripts": {    // remove comments as json doesn't support them
                 "clean": "rimraf build/*",  // deletes everything from build
-                "copy-assets": "ts-node tools/copyAssets",  // copies relevant assets from src to build
                 "tsc": "tsc",   // transpiles typescript to javascript
+                "copy-assets": "ts-node tools/copyAssets",  // copies relevant assets from src to build
                 "build": "npm-run-all clean tsc copy-assets",   // runs the above mentioned scripts with a single command
                 "start": "node .",  // command to run dev server
                 "dev:start": "npm-run-all build start",    // transpiles and then starts the dev server
