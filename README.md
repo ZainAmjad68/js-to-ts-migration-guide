@@ -9,7 +9,7 @@ Also, even though the size, scope, and complexity of programs written in JavaScr
 
 TypeScript can help you fill that mismatch by providing OOP like features that can help you model clearer relationships between different parts of your code.
 
-But that typically only applies to new projects, because converting a large project written using functional paradigm into OOP's class based structure requires a lot of time and resources, so much so that you're better off writing the whole thing from scratch.
+But that typically only applies to new projects, because converting a large project - written using functional programming paradigm - into OOP's class based structure requires a lot of time and resources, so much so that you're better off writing the whole thing from scratch.
 
 So, the main reason for converting an existing project to TypeScript would be to improve the developer's experience and possibly find errors before run-time (especially useful for projects where each deployment takes a long time).
 
