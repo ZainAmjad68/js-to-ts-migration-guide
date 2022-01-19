@@ -1,19 +1,25 @@
-# js-to-ts-migration-guide
+# JavaScript-to-TypeScript-migration-guide
 
 If you've reached here, you might already know that TypeScript is a superset of JavaScript and that TypeScript is eventually transpiled to JavaScript so that it can be run. That begs the question, **why would anyone want to migrate to TS?**
 
 ## Why do it?
-There are several reasons why one might want to convert his JavaScript project to TypeScript.
+There are several reasons why one might want to convert his JavaScript project to TypeScript, with the most obvious being gaining the ability to detect errors while writing code and not during compilation.
 
-While the size, scope, and complexity of programs written in JavaScript has grown exponentially, the ability of the JavaScript language to express the relationships between different units of code has not. Combined with JavaScript’s rather peculiar runtime semantics, this mismatch between language and program complexity has made JavaScript development a difficult task to manage at scale.
+Also, even though the size, scope, and complexity of programs written in JavaScript has grown exponentially, the ability of the JavaScript language to express the relationships between different units of code has not. Combined with JavaScript’s rather peculiar runtime semantics, this mismatch between language and program complexity has made JavaScript development a difficult task to manage at scale.
 
-It's always good to validate that you're doing something for the right reasons, because 
+TypeScript can help you fill that mismatch by providing OOP like features that can help you model clearer relationships between different parts of your code.
+
+But that typically only applies to new projects, because converting a large project written using functional paradigm into OOP's class based structure requires a lot of time and resources, so much so that you're better off writing the whole thing from scratch.
+
+So, the main reason for converting an existing project to TypeScript would be to improve the developer's experience and possibly find errors before run-time (especially useful for projects where each deployment takes a long time).
+
+So, now that you're here, it's always good to validate that you're doing this for the right reasons.
 
 Here are some of the good reasons for deciding to migrate to TypeScript:
 
 - Taking advantage of its Type Annotations
 - Language Features provided on top of JavaScript
-- Intellisense | API Documentation
+- Enhanced Intellisense | API Documentation
 
 And here are some not so good reasons for migrating:
 
@@ -74,7 +80,7 @@ All the changes documented:
   ]
 ```
 
-*You are now ready to convert your first JS file into TS.* Choose any file (try to start with smaller files and go in the same flow as your application would go [i.e.; for an express application: index.js -> router -> middleware -> handler]) that you would like to convert and change its extension to `.ts`. Deal with any error that might arise. And after you're satisfied, run `npm run build`. It should transpile the typescript code and give you the desired result.
+***You are now ready to convert your first JS file into TS.*** Choose any file (try to start with smaller files and go in the same flow as your application would go [i.e.; for an express application: index.js -> router -> middleware -> handler]) that you would like to convert and change its extension to `.ts`. Deal with any error that might arise. And after you're satisfied, run `npm run build`. It should transpile the typescript code and give you the desired result.
 
 Repeat the process until all the files in the project are converted to TS. If possible, run the project after every conversion, it would make it easier to catch any errors made by you during the converion and will help to isolate the cause of failure to that single recently converted file. 
 
