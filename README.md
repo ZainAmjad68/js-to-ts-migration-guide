@@ -97,7 +97,46 @@ Repeat the process until all the files in the project are converted to TS. If po
 Below are some errors that one usually has to face when converting JavaScript code to TypeScript.
 
 -> Error #1: On trying to transpile using `tsc` command, you get **`No inputs were found in config file`**
-> Fix: error means that TS couldn't find any file to compile. Create an empty ts file in src folder or convert any existing js one and the error should go away.
+> Error means that TS couldn't find any file to compile. Create an empty ts file in src folder or convert any existing js one and the error should go away.
 
--> Error #2: File is not a module
+-> Error #2: **`Could not find a declaration file for module 'module-name'.`**
+> Error means that the type annotations for that module are missing, so we can fix this easily by executing `npm install -D @types/module-name`
+
+-> Error #3: **`File is not a module`**
 > The way typescript exports/imports files is different to javascript. For example, you import a module using `const xyz = require("xyz");`, the same can be done in typescript in following ways: ```javascript import * as app1 from "./test"; import app2 = require("./test"); import {App} from "./test";```. Similarly, for exports you convert `module.exports = foo` to `export = foo`. More details (here)[https://stackoverflow.com/a/32805764]
+
+-> Error #4: **`Element implicitly has an 'any' type`**
+> Probably the most common error you'll encounter when you convert a JS file to TS. It means that typescript doesn't know the type of the 'Element' and has assigned the generic `any` type to it and thus can't provide you with sort of intellisense or error reporting. You can solve this problem by giving the Element a type, whether it be a primitive type like `string` or a custom defined `interface`
+
+-> Error #5: **`Object is possibly 'undefined'`**
+> You might encounter this if you're trying to access some nested property of an object. The error says that both you and typescript can't possibly know if that property will exist at runtime and so you need to handle the case where it doesn't exist. There's a pretty simple fix for this: just add '?' to each property that might be undefined and TS will automatically handle and assign undefined in case it doesn't exist. Example: `const data = change?.in?.data();`
+
+-> Error #6: **`Typescript Error: Property 'abc' does not exist on type 'XYZ'`**
+> This means that "abc" is not a property that is available natively in the XYZ object of the library you're utilizing. If you're sure that something (like a middleware) adds such property to the XYZ object, you can override the XYZ type this way:
+```javascript
+declare module "module-name" { 
+  export interface XYZ {
+    abc: string,
+  }
+}
+```
+
+-> Error #7: **`Object is of type 'unknown'.`**
+> Typescript assigns unknown to the err in the catch block of a try/catch because it doesn't know what type of error might be thrown. As the developer, you have to help typescript out a little bit here and tell it the error type so it can do its job. For example, if you're making an API call, you're likely to get either a StatusCodeError or a RequestError. So, you can handle the error like this:
+```javascript
+try {
+    perform some task
+} catch(err) {
+     if (err instanceof StatusCodeError) 
+     { 
+         handle server/auth error   // typescript is intelligent enough to only show you properties that are available on a Status Code Error here
+     } else if (err instanceof RequestError) 
+     { 
+         handle bad request error   // can access all Request Error properties here
+     }
+}
+```
+
+-> Error #8: **`'Foo' only refers to a type, but is being used as a value here.`**
+> If a variable can have different types of value depending on a scenario, you might want to use 'instanceof' to handle each of the scenarios. This is where the above error can be usually seen. You might need to use Type Guards to solve this. More details [here](https://stackoverflow.com/a/46703380).
+
