@@ -140,3 +140,5 @@ try {
 -> Error #8: **`'Foo' only refers to a type, but is being used as a value here.`**
 > If a variable can have different types of value depending on a scenario, you might want to use 'instanceof' to handle each of the scenarios. This is where the above error can be usually seen. You might need to use Type Guards to solve this. More details [here](https://stackoverflow.com/a/46703380).
 
+-> Error #9: **`No overload matches this call.`**
+> Happens when you have passed an incorrect number of arguments to an anonymous function, for example you might see this error when adding middleware in express. The way to go about this one is to use type assertion to tell typescript what you're trying to do. `Router.get("/workorders", module.doSomeWork as unknown as express.RequestHandler);`
