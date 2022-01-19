@@ -98,5 +98,6 @@ Below are some errors that one usually has to face when converting JavaScript co
 
 -> Error #1: On trying to transpile using `tsc` command, you get **`No inputs were found in config file`**
 > Fix: error means that TS couldn't find any file to compile. Create an empty ts file in src folder or convert any existing js one and the error should go away.
+
 -> Error #2: File is not a module
 > The way typescript exports/imports files is different to javascript. For example, you import a module using `const xyz = require("xyz");`, the same can be done in typescript in following ways: ```javascript import * as app1 from "./test"; import app2 = require("./test"); import {App} from "./test";```. Similarly, for exports you convert `module.exports = foo` to `export = foo`. More details (here)[https://stackoverflow.com/a/32805764]
