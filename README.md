@@ -93,3 +93,8 @@ Repeat the process until all the files in the project are converted to TS. If po
 ---------------------------------------------------------------------------------------------------------------------------------
 
 ## Common Errors and their Fixes:
+
+Below are some errors that one usually has to face when converting JavaScript code to TypeScript.
+
+-> Error: On trying to transpile using `tsc` command, you get **`No inputs were found in config file`**
+> Fix: convert `module.exports = foo` to `export = foo`;
