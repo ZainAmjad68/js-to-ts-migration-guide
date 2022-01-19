@@ -29,7 +29,9 @@ And here are some not so good reasons for migrating:
 
 ## Overview of the Process
 
-All the changes documented:
+The steps below will take you through the whole process concisely. There's also a [guide](https://github.com/ZainAmjad68/js-to-ts-migration-guide#common-errors-and-their-fixes) at the end for fixing common errors once you start converting TS files to JS.
+
+
 - Make two folders, `src` and `build`. Copy/Paste all the old project files into the src folder. Take out the `package.json` and any other non-JS configuration related files (.github folder, .gitignore, claudia webpack, gulp files etc.) into the root directory
 - Install TypeScript by executing `npm install typescript`. And use `tsc --init` command to build a tsconfig.json file.
     * `tsconfig.json` should have the input and output directories defined, allow JS to be processed initially, and include the target version of JS. All in all, these options should be present in the file:
@@ -84,7 +86,7 @@ All the changes documented:
 
 ***You are now ready to convert your first JS file into TS.*** 
 
-Choose any file (try to start with smaller files and go in the same flow as your application would go [i.e.; for an express application: index.js -> router -> middleware -> handler]) that you would like to convert and change its extension to `.ts`. Deal with any error that might arise. Here's a simple [guide](https://github.com/ZainAmjad68/js-to-ts-migration-guide#common-errors-and-their-fixes) on some common errors that you might encounter. And after you're satisfied, run `npm run build`. It should transpile the typescript code and give you the desired result.
+Choose any file (try to start with smaller files and go in the same flow as your application would go [i.e.; for an express application: index.js -> router -> middleware -> handler]) that you would like to convert and change its extension to `.ts`. Deal with any error that might arise - the guide below sheds some light on some common errors that you might encounter. And after you're satisfied, run `npm run build`. It should transpile the typescript code and give you the desired result.
 
 Repeat the process until all the files in the project are converted to TS. If possible, run the project after every conversion, it would make it easier to catch any errors made by you during the converion and will help to isolate the cause of failure to that single recently converted file. 
 
