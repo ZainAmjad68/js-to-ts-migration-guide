@@ -73,7 +73,7 @@ The steps below will take you through the whole process concisely. There's also 
                 "dev": "nodemon --watch src -e ts,ejs,png,css --exec npm run dev:start",    // starts the dev server in watch mode
             }
             ```
-- In the package.json, change the main entering point of the app and also specify the files property to only include build folder files.
+- In the package.json, change the main entering point of the app and also specify the `files` property to only include build folder files.
 ```json
   "main": "build/index.js",
   "files": [
@@ -103,7 +103,7 @@ Below are some errors that one usually has to face when converting JavaScript co
 > Error means that the type annotations for that module are missing, so we can fix this easily by executing `npm install -D @types/module-name`
 
 -> Error #3: **`File is not a module`**
-> The way typescript exports/imports files is different to javascript. For example, you import a module using `const xyz = require("xyz");`, the same can be done in typescript in following ways: ```javascript import * as app1 from "./test"; import app2 = require("./test"); import {App} from "./test";```. Similarly, for exports you convert `module.exports = foo` to `export = foo`. More details [here](https://stackoverflow.com/a/32805764)
+> The way typescript exports/imports files is different to javascript. For example, you import a module using `const xyz = require("xyz");`, the same can be done in typescript in following ways: ```javascript import * as app1 from "./test"; import app2 = require("./test"); import {App} from "./test";```. Similarly, for exports you convert `module.exports = foo` to `export = foo`. More details [here](https://stackoverflow.com/a/32805764).
 
 -> Error #4: **`Element implicitly has an 'any' type`**
 > Probably the most common error you'll encounter when you convert a JS file to TS. It means that typescript doesn't know the type of the 'Element' and has assigned the generic `any` type to it and thus can't provide you with sort of intellisense or error reporting. You can solve this problem by giving the Element a type, whether it be a primitive type like `string` or a custom defined `interface`
