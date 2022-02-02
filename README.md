@@ -1,4 +1,4 @@
-# JavaScript-to-TypeScript-migration-guide
+# JavaScript to TypeScript migration guide
 
 If you've reached here, you might already know that TypeScript is a superset of JavaScript and that TypeScript is eventually transpiled to JavaScript so that it can be run. That begs the question, **why would anyone want to migrate to TS?**
 
